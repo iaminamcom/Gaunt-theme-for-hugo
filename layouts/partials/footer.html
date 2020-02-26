@@ -1,0 +1,23 @@
+<footer class="py-6 mt-8 bg-gray-100">
+  <div>
+    <ul class="text-center text-2xl my-4 text-gray-500">
+      {{ range $.Site.Data.menu.social }}
+      <li class="inline-block hover:text-black focus:text-black duration-200 mx-2">
+        <a href="{{.link}}">
+          <span class="sr-only">{{.name}}</span>
+          <i class=" not-sr-only fa {{.icon}}"></i></a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  <div class="text-sm text-center p-3 text-gray-700 sm:text-base duration-200">
+    Copyright ©minam - All rights Reserved
+    <ul class="inline-block p-1 sm:ml-8">
+      {{ range $.Site.Data.menu.legal }}
+        <li class="inline-block mx-1">
+          <a href="{{.url}}" class="underline hover:text-black ">{{ .name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</footer>

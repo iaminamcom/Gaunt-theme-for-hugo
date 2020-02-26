@@ -1,0 +1,43 @@
+{{ define "main" }}
+	<!-- post list -->
+	<div class="md:w-3/4 w-full">
+	{{-  range where .Site.RegularPages "Section" "posts" -}}
+		<div class="max-w-screen-sm mb-6 flex m-1 h-32 md:h-40">
+			<div class="w-1/3 flex">
+				{{ if isset .Params "featureimage" -}}
+			    <img src="{{.Params.featureimage | absURL }}" {{ if isset .Params "featureimagedescription" }}alt="{{.Params.featureimagedescription}}"{{end}}
+			     	class="object-center object-cover rounded">
+			  {{ end }}	
+			</div>
+			<div class="w-2/3 relative mx-2">
+				<h2 class="font-bold text-gray-800 md:text-xl">{{ .Title }}</h2>
+				<div><p class="text-gray-700 hidden md:inline-block my-2 text-sm">{{.Description}}</p></div>
+				<div class="absolute right-0 w-full bottom-0 text-sm">
+					{{ if (isset .Params "categories") }}
+						{{ range .Params.categories }}<span class="text-gray-600">{{ . }}</span>{{ end }}
+					{{ end }}
+					<a href="{{ .Permalink }}" class="font-bold text-gray-800 uppercase float-right mr-3">Read it <i aria-hidden="true">&#8594;</i></a>
+				</div>
+			</div>
+		</div>
+	{{ end }}
+
+	</div>
+
+	<!-- sidebar -->
+	<div class="bg-gray-100 md:w-1/4 w-full pt-6 text-gray-800 self-start text-sm  md:border-l">
+		<!-- top categories -->
+		<div class="ml-6 md:mx-2 font-bold mb-6">
+			<p class="uppercase">top categories</p>
+			{{ range $key, $value := .Site.Taxonomies.categories }}
+        <li class="my-2 list-none font-medium">
+          <a href="categories/{{ $key }}">{{ replace $key "-" " "| title }}</a>
+        </li>
+      {{ end }}
+		</div>
+		<!--  -->
+		<div class="ml-6 md:mx-2 font-bold mb-6">
+			<p class="uppercase">top categories</p>
+		</div>
+	</div>
+{{ end }}

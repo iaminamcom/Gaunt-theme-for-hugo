@@ -1,0 +1,49 @@
+{{with .NextInSection}}
+<h2>Read Next</h2>
+<div class="max-w-screen-sm mb-6 flex m-1 h-32 md:h-40">
+	<div class="w-1/3 flex">
+		{{ if isset .Params "featureimage" -}}
+	    <img src="{{.Params.featureimage | absURL }}" {{ if isset .Params "featureimagedescription" }}alt="{{.Params.featureimagedescription}}"{{end}}
+	     	class="object-center object-cover rounded">
+	  {{ end }}	
+	</div>
+	<div class="w-2/3 relative mx-2">
+		<h2 class="font-bold text-gray-800 md:text-xl">{{ .Title }}</h2>
+		<div><p class="text-gray-700 hidden md:inline-block my-2 text-sm">{{.Description}}</p></div>
+		<div class="absolute right-0 w-full bottom-0 text-sm">
+			{{ if (isset .Params "categories") }}
+				{{ range .Params.categories }}<span class="text-gray-600">{{ . }}</span>{{ end }}
+			{{ end }}
+			<a href="{{ .Permalink }}" class="font-bold text-gray-800 uppercase float-right mr-3">Read it <i aria-hidden="true">&#8594;</i></a>
+		</div>
+	</div>
+</div>
+{{end}}
+
+{{ $page_link := .Permalink }}
+{{ $tags := .Params.categories }}
+{{ range .Site.Pages }}
+{{ $page := . }}
+{{ $has_common_tags := intersect $tags .Params.categories | len | lt 0 }}
+{{ if and $has_common_tags (ne $page_link $page.Permalink) }}
+<h2>Read Similiar</h2>
+<div class="max-w-screen-sm mb-6 flex m-1 h-32 md:h-40">
+	<div class="w-1/3 flex">
+		{{ if isset .Params "featureimage" -}}
+	    <img src="{{.Params.featureimage | absURL }}" {{ if isset .Params "featureimagedescription" }}alt="{{.Params.featureimagedescription}}"{{end}}
+	     	class="object-center object-cover rounded">
+	  {{ end }}	
+	</div>
+	<div class="w-2/3 relative mx-2">
+		<h2 class="font-bold text-gray-800 md:text-xl">{{ $page.Title }}</h2>
+		<div><p class="text-gray-700 hidden md:inline-block my-2 text-sm">{{.Description}}</p></div>
+		<div class="absolute right-0 w-full bottom-0 text-sm">
+			{{ if (isset .Params "categories") }}
+				{{ range .Params.categories }}<span class="text-gray-600">{{ . }}</span>{{ end }}
+			{{ end }}
+			<a href="{{ $page.Permalink }}" class="font-bold text-gray-800 uppercase float-right mr-3">Read it <i aria-hidden="true">&#8594;</i></a>
+		</div>
+	</div>
+</div>
+{{ end }}
+{{ end }}

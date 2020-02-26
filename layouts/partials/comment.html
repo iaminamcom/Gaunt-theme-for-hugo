@@ -1,0 +1,29 @@
+<div class="disqus-comments">
+  <div id="showcom">
+    <span class="text-gray-700">Say something or read other's ideas</span>
+    <button id="show-comments" class="bg-gray-100 border p-3" type="button"><i aria-hidden="true" class="fa fa-comments-o mr-2"></i>Show <span class="disqus-comment-count" data-disqus-identifier="{{ .File.UniqueID }}">First article</span></button>
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+<script id="dsq-count-scr" src="//{{.Site.DisqusShortname}}.disqus.com/count.js" async></script>
+<script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = '{{ trim .Permalink "/" }}';
+    this.page.title = '{{ .Title }}';
+    this.page.identifier = '{{ .File.UniqueID }}';
+  };
+  document.getElementById('show-comments').onclick = function () {
+    var disqus = document.createElement('script'); 
+    disqus.type = 'text/javascript'; 
+    disqus.async = true;
+    disqus.src = '//' + '{{.Site.DisqusShortname}}' + '.disqus.com/embed.js';
+    document.body.appendChild(disqus);
+
+    var showcom = document.getElementById('showcom');
+    this.innerHTML += '...';
+    setTimeout(function () {
+      showcom.parentNode.removeChild(showcom);
+    },3000);
+  };
+</script>

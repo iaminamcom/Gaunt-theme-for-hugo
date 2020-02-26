@@ -1,0 +1,19 @@
+<div class="text-gray-600 bg-gray-100 p-2 h-20 sm:h-32 my-6 flex justify-between items-center flex-col sm:flex-row">
+	<div>
+		<button onclick="window.print();return false;"><i class="fa fa-print mr-2" aria-hidden="true"></i><span class="font-bold mr-2">PRINT</span></button>
+		<span class="font-bold mr-2">SHARE</span> 
+		{{ $title := .Title }}
+		{{ $description := .Description }}
+		{{ $url := printf "%s" .Permalink | absLangURL }}
+		{{ $body := print $title ", by " .Site.Title "\n" .Params.description "\n\n" $url "\n" }}
+		
+		<a href="https://twitter.com/intent/tweet?source={{ $url }}&text=:%20{{ $url }}" target="_blank" title="Tweet"><i class="mr-2 fa fa-twitter" aria-hidden="true"></i></a>
+
+		<a href="mailto:?subject=Check%20out%20{{ $title }}.&body={{ $body }}"  aria-label="share on Email"><i class="mr-2 fa fa-envelope" aria-hidden="true"></i></a>
+
+		<a href="whatsapp://send?text={{ $url }}"><i class="mr-2 fa fa-whatsapp" aria-hidden="true"></i></a>
+	</div>
+	<div class="flex items-center">
+		<i class="fa fa-link mx-2"></i><input type="text" value="{{ .Permalink }}">
+	</div>
+</div>

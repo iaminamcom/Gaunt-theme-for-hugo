@@ -1,0 +1,26 @@
+{{ define "main" }}
+	<!-- post content -->
+	<div class="md:w-3/4 m-1 tracking-wide">
+		<h1 class="text-2xl font-bold text-gray-800">{{ .Title }}</h1>
+		<div class="text-gray-600 text-sm flex justify-between">
+			<span>{{range .Params.categories}}{{.}}{{end}}</span>
+			<span>{{ .Date.Format "Jan 2, 2006" }}</span>
+			<span>~{{.FuzzyWordCount}} words</span>
+		</div>
+		<div><img src="{{.Params.featureimage | absURL }}" alt="{{.Params.featureimagedescription}}" class="rounded h-56 object-cover w-full sm:h-80 lg:h-128 my-3"></div>
+		<!-- content -->
+		<div class="text-gray-800 post overflow-x-hidden ">
+			<article>
+				{{.Content}}
+			</article>
+		</div>
+		<!-- post bottom -->
+		{{ partial "post-bottom.html" . }}
+		<!-- { partial "comment.html" . }} -->
+		{{ partial "posts-nav.html" . }}
+	</div>
+	<!-- sidebar -->
+  <!-- { if eq .Site.Params.sidebar "show" -}}
+	<div class="bg-gray-100 md:w-1/4 w-full pt-6 text-gray-800 self-start text-sm  md:border-l">	</div>
+	{- end }} -->
+{{ end }}
