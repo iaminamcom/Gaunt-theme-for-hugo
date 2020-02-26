@@ -1,116 +1,30 @@
-# Hugo Starter Theme with Tailwindcss
-
-Starter files for a Hugo theme with Tailwindcss.
-
-- set up to use [Tailwindcss](https://tailwindcss.com) - v1.2
-- use [Hugo Pipes](https://gohugo.io/hugo-pipes/) to build and load css based on `dev` or `build` environment
-- purge unused css classes with [Purgecss](https://www.purgecss.com) for `build`, but __not__ in `dev`
-- works as separate theme repo or as a local theme folder within a Hugo site
-- basic template setup with an index page, an about page and a posts category
-- responsive navigation header with minimal javascript to hide the nav on small screens
-- to keep that s***er down, the theme features a sticky footer
-
-Live long and code.
-
-## Prerequisites
-
-Make sure to install `postcss-cli` and `autoprefixer` globally in your environment, as Hugo Pipe’s PostCSS requires it. This is mentioned in the [Hugo Docs](https://gohugo.io/hugo-pipes/postcss/).
-
+This is a complete Hugo theme for a blog.
+## How to install
+Go to [link here](https://gohugo.io/getting-started/installing/)  to learn how to install a theme in your hugo website. But a general tip is by following command below, simply change directory to themes like mywebsite/themes/
 ```bash
-npm install -g postcss-cli
-npm install -g autoprefixer
+cd themes #asuming you're in hugo site directory.
 ```
-
-## Basic usage to develop a separate Theme repo
-
-- clone and rename the repo
-
+then clone theme repo here in themes directory by following command
 ```bash
-git clone https://github.com/dirkolbrich/hugo-theme-tailwindcss-starter new-theme-name
+git clone https://github.com/minaminfo/Gaunt-theme-for-hugo.git Gaunt
 ```
+**Don't have git installed or don't understand it?**
+Simply go to **Clone or download**(preivew below) button above and download it as a ZIP file. Then extract(unzip) it into `themes directory `.
+[![Screenshot-2020-02-26-minaminfo-Gaunt-theme-for-hugo.png](https://i.postimg.cc/brTGDBnG/Screenshot-2020-02-26-minaminfo-Gaunt-theme-for-hugo.png)](https://postimg.cc/bSZY4L38)
 
-- to make that theme your own, switch into the newly created folder, remove the git history from this starter repo and initiate a new git repo
+###Let's activate this theme
+Go to [link here](https://gohugo.io/getting-started/installing/)  to learn how to install a theme in your hugo website.  Or in simple words edit `config.toml` file in your site directory and set theme like `theme = Gaunt`.
+Make sure theme directory/folder name  is Gaunt --- same as you're giving in `config.toml`.
 
-```bash
-cd new-theme-name
-rm -rf .git
-git init
-```
+---
 
-- now install the necessary node packages
+##About this Theme
 
-```bash
-npm install
-```
+- It's **fast** as no external dependency. Whole of the CSS is minimized and jank-free. CSS is less than 10KB in size and no external JavaScript.
+- Full **Accessibility** support
+- **PWA** enabled
+- Option to show/hide sidebar
 
-- edit the `config.toml` file in `exampleSite/` to reflect the `new-theme-name`
+###Technical details
 
-```toml
-# in config.toml
-theme = "new-theme-name" # your new theme name here
-```
-
-- start a server to develop with `exampleSite`
-
-```bash
-hugo server -s exampleSite --themesDir=../.. --disableFastRender
-```
-
-## Usage direcly within a Hugo repo as a theme package
-
-- start a new Hugo site
-
-```bash
-hugo new site new-site
-```
-
-- switch into the theme folder an clone the starter repo
-
-```bash
-cd new-site/themes
-git clone https://github.com/dirkolbrich/hugo-theme-tailwindcss-starter new-theme-name
-```
-
-- switch into the newly created theme folder, remove the git history from this starter repo and install the node packages
-
-```bash
-cd new-theme-name
-rm -rf .git
-npm install
-```
-
-- edit the `config.toml` file in `new-site/` to reflect the new-theme-name
-
-```toml
-# in config.toml
-theme = "new-theme-name" # your new theme name here
-```
-
-- switch to the root of the new-site repo and start a server to view the index site
-
-```bash
-cd new-site
-hugo server --disableFastRender
-```
-
-Your content should go into `new-site/content`, the development of the site layout is done within `new-site/themes/new-theme-name/layout`.
-
-## How does that work anyway
-
-This theme setup uses two separate `postcss.config.js` files as a configuration used by the Hugo PostCSS Pipe. One for `dev` and one for `build`. Based on these config files, postcss builds the `styles.css` for the site. This snippet is located in `/layouts/partials/head.html` and is.
-
-```html
-{{ if .Site.IsServer }}
-    {{ $style := resources.Get "css/styles.css" | postCSS (dict "config" "./assets/css/dev/postcss.config.js") }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}">
-{{ else }}
-    {{ $style := resources.Get "css/styles.css" | postCSS (dict "config" "./assets/css/postcss.config.js") | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
-{{ end }}
-```
-
-The `dev` config only pulls the `tailwind` package and uses `autoprefixer` on it, while the `build` config also uses `purgecss` on the resulting `tailwind` css classes, to keep the file size minimal.
-
-## Reference
-
-See the Hugo forum discussion "[Regenerating assets directory for Hugo Pipes](https://discourse.gohugo.io/t/regenerating-assets-directory-for-hugo-pipes-solved/13175)" for the functionality concept.
+The tailwindcss starter theme https://github.com/minaminfo/hugo-theme-tailwindcss-starter which is fork of dirkolbrich [starter theme](https://github.com/dirkolbrich/hugo-theme-tailwindcss-starter)  is the base of this theme. Learn more [tailwind css](tailwindcss.com) 
