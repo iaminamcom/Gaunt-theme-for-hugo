@@ -74,6 +74,13 @@
 	.h-128{height: 32rem}
 }
 
+.post{
+    font-family: 'Poppins';
+}
+h1,h2,h3{@apply font-bold}
+h1{@apply text-2xl}
+h2{@apply text-xl}
+h3{@apply text-lg}
 
 .post a{@apply underline}
 .post table,th,td{

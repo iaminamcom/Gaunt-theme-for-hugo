@@ -1,0 +1,6 @@
+<ol class="text-sm text-gray-600 my-3">
+  <li class="inline-block text-gray-800"><a href="{{.Site.BaseURL}}">home</a></li> /
+  {{ range first 1 (.GetTerms "categories") }}
+  <li class="inline-block text-gray-800"><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li> /
+  {{end}}
+</ol>
