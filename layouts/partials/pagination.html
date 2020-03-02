@@ -1,0 +1,9 @@
+{{ $paginator := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections) }}
+{{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
+<!-- { template "_internal/pagination.html" . }} -->
+<div class="text-center py-6 ">
+	{{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}" class="font-bold text-gray-800 uppercase rounded border p-1 bg-gray-100">&#8592;</a>{{end}}
+	<span class="">{{$paginator.PageNumber}}</span>
+    {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}" class="font-bold text-gray-800 uppercase rounded border p-1 bg-gray-100">Next page &#8594;</a>{{end}}
+</div>
+{{ end }}

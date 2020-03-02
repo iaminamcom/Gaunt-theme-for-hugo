@@ -14,13 +14,14 @@
 				<div><p class="text-gray-700 hidden md:inline-block my-2 text-sm">{{.Description}}</p></div>
 				<div class="absolute right-0 w-full bottom-0 text-sm">
 					{{ if (isset .Params "categories") }}
-						{{ range .Params.categories }}<span class="text-gray-600">{{ . }}</span>{{ end }}
+					{{ range first 1 (.GetTerms "categories") }}<a href="{{.Permalink}}" class="capitalize text-gray-800">{{.LinkTitle}}</a>{{end}}
 					{{ end }}
 					<a href="{{ .Permalink }}" class="font-bold text-gray-800 uppercase float-right mr-3">Read it <i aria-hidden="true">&#8594;</i></a>
 				</div>
 			</div>
 		</div>
 	{{ end }}
+	{{ partial "pagination.html" .}}
 	</div>
 
 	<!-- sidebar -->

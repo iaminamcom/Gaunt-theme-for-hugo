@@ -83,14 +83,13 @@ h2{@apply text-xl}
 h3{@apply text-lg}
 
 .post a{@apply underline}
-.post table,th,td{
-	@apply border border-gray-200 text-left py-1 px-2
-}
+.post table,th,td{@apply border border-gray-200 text-left py-1 px-2}
+.post p{@apply mb-6}
 .post table{@apply overflow-auto table-auto my-2}
 .post thead{@apply bg-gray-200}
-.post ul{list-style-type: disc; @apply pl-3 ml-2}
-.post ol{list-style-type: auto; @apply pl-3 ml-2}
+.post ul{list-style-type: disc; @apply pl-3 ml-4}
+.post ol{list-style-type: auto; @apply pl-3 ml-4}
 .post blockquote{@apply rounded-br-lg rounded-tl-lg italic my-2 border-l-4 border-r-4 text-center border-gray-500 bg-gray-300 p-3}
-
+.post h2,.post h3{@apply mb-1 mt-3}
 .post code{font-family: monospace !important;@apply bg-gray-300 select-all p-1}
 .highlight code{@apply bg-transparent}
