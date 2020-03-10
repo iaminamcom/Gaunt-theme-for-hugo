@@ -25,21 +25,6 @@
 	{{ end }}
 	{{ partial "pagination.html" .}}
 	</div>
-
 	<!-- sidebar -->
-	<div class="bg-gray-100 md:w-1/4 w-full pt-6 text-gray-700 self-start text-sm md:border-l">
-		<!-- top categories -->
-		<div class="ml-6 md:mx-2 font-bold mb-6">
-			<p class="uppercase">top categories</p>
-			{{ range $key, $value := .Site.Taxonomies.categories }}
-        <li class="my-2 list-none font-medium">
-          <a href="/categories/{{ $key }}">{{ replace $key "-" " "| title }}</a>
-        </li>
-      {{ end }}
-		</div>
-		<!--  -->
-		<div class="ml-6 md:mx-2 font-bold mb-6">
-			<p class="uppercase">top categories</p>
-		</div>
-	</div>
+	{{ partial "sidebar.html" .}}
 {{ end }}
