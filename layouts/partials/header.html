@@ -1,16 +1,34 @@
-<header class="mb-8 sm:mb-12">
-  <div class="text-center p-3 max-w-screen-lg m-auto">
-    <div class="sm:float-left">
-      <h1 class="font-bold m-0 text-xl" style="font-family: 'Lobster Two', cursive;">Gaunt</h1>
-    </div>
-    <div class="my-6 sm:hidden"></div>
-    <div class="sm:float-right m-auto capitalize leading-none transform translate-y-2 text-gray-700">
-      <ul>
-        <li class="inline-block mr-2 sm:mr-8 hover:text-black"><a href="/">home</a></li>
-        {{ range $.Site.Data.menu.main }}
-        <li class="inline-block mr-2 sm:mr-8"><a href="{{.url}}">{{.name}}</a></li>
-        {{ end }}
-      </ul>
-    </div>
-  </div>
+<header class="bg-gray-100 mb-6 border p-2">
+   <div class="relative flex justify-between items-center max-w-screen-lg m-auto">
+      <h1 class="font-bold m-0 text-2xl inline-block text-gray-700 flex-auto" style="font-family: 'Lobster Two' ;"><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+      <button id="menubtn" class="z-20 sm:hidden fixed top-0 right-0 m-4 w-4 text-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="fill-current">
+            <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+          </svg>
+      </button>
+      <div class="hidden sm:block flex-auto">
+         <ul class="flex justify-around text-gray-700" aria-label="main menu">
+            {{ range $.Site.Data.menu.main }}
+            <li><a href="{{.url}}" class="hover:text-black">{{.name}}</a></li>
+            {{ end }}
+         </ul>
+      </div>
+   </div>
 </header>
+<div class="sidemenu w-56 p-2 fixed bg-gray-100 border flex flex-col justify-center align-center h-full top-0 right-0 text-gray-700 uppercase z-10 duration-200 transform translate-x-full">
+   <ul>
+      {{ range $.Site.Data.menu.main }}
+      <li class="m-2"><a href="{{.url}}">{{.name}}</a></li>
+      {{ end }}
+   </ul>
+</div>
+<script type="text/javascript">
+  var menubtn = document.getElementById('menubtn');
+  menubtn.onclick = function(){showmenu()}
+  function showmenu() {
+    document.getElementsByClassName('sidemenu')[0].classList.toggle('translate-x-full');
+  }
+   window.onscroll = function() {
+       window.scrollY > 50 ? menubtn.classList.remove('sm:hidden') : menubtn.classList.add('sm:hidden');
+   }
+</script>

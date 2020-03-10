@@ -1,10 +1,10 @@
 {
-    "name": "hugo-theme-tailwindcss-starter",
+    "name": "Gaunt theme for Hugo",
     "version": "0.1.1",
-    "description": "Starter files for a Hugo theme with Tailwindcss",
+    "description": "",
     "main": "index.js",
-    "repository": "https://github.com/dirkolbrich/hugo-theme-tailwindcss-starter",
-    "author": "dirkolbrich <github@dirkolbrich.de>",
+    "repository": "",
+    "author": "",
     "license": "MIT",
     "scripts": {
         "start": "hugo --gc"
